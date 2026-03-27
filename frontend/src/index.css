@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg:           #0D0D0D;
+  --surface:      #161616;
+  --surface2:     #1E1E1E;
+  --border:       rgba(255,255,255,0.08);
+  --border-hover: rgba(255,255,255,0.20);
+  --text:         #F0EDE8;
+  --muted:        #6B6661;
+  --muted2:       #4A4643;
+  --accent:       #E8C547;
+  --accent-dim:   rgba(232,197,71,0.12);
+  --accent-glow:  rgba(232,197,71,0.06);
+  --green:        #4ADE80;
+  --green-dim:    rgba(74,222,128,0.10);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Geist', system-ui, sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* Ambient grid */
+.grid-bg::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.024) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.024) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Radial glow */
+.grid-bg::after {
+  content: '';
+  position: fixed;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(232,197,71,0.04) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Typography */
+.font-serif { font-family: 'Instrument Serif', Georgia, serif; }
+.font-sans  { font-family: 'Geist', system-ui, sans-serif; }
+
+/* Animations */
+@keyframes breathe {
+  0%,100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes pulse-ring {
+  0%   { transform: scale(1);   opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.animate-breathe { animation: breathe 2.5s ease-in-out infinite; }
+.animate-fadeUp  { animation: fadeUp 0.6s ease both; }
+.animate-slideIn { animation: slideIn 0.4s ease both; }
+.animate-spin    { animation: spin 0.75s linear infinite; }
+
+/* Shimmer loading */
+.shimmer {
+  background: linear-gradient(90deg, var(--surface) 25%, var(--surface2) 50%, var(--surface) 75%);
+  background-size: 400px 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+/* Markdown output styles */
+.markdown-body { color: #C8C4BC; line-height: 1.85; font-size: 14px; font-weight: 300; }
+.markdown-body h1 { font-family: 'Instrument Serif', serif; font-size: 22px; font-weight: 400; color: var(--text); margin: 0 0 16px; letter-spacing: -0.5px; }
+.markdown-body h2 { font-family: 'Instrument Serif', serif; font-size: 18px; font-weight: 400; color: var(--text); margin: 24px 0 10px; }
+.markdown-body h3 { font-size: 14px; font-weight: 500; color: #D0CCC6; margin: 18px 0 8px; letter-spacing: 0.2px; }
+.markdown-body p  { margin-bottom: 12px; }
+.markdown-body ul, .markdown-body ol { padding-left: 20px; margin-bottom: 12px; }
+.markdown-body li { margin-bottom: 5px; }
+.markdown-body strong { font-weight: 500; color: #DDD9D3; }
+.markdown-body em { font-style: italic; color: var(--accent); }
+.markdown-body hr { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+.markdown-body code { font-family: 'Geist Mono', monospace; font-size: 12px; background: var(--surface2); padding: 2px 6px; border-radius: 4px; color: var(--accent); }
+.markdown-body pre { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 16px; overflow-x: auto; margin-bottom: 14px; }
+.markdown-body pre code { background: none; padding: 0; color: #C8C4BC; }
+.markdown-body table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 13px; }
+.markdown-body th { background: var(--surface2); color: var(--text); font-weight: 500; padding: 8px 12px; text-align: left; border: 1px solid var(--border); }
+.markdown-body td { padding: 7px 12px; border: 1px solid var(--border); color: #C0BCB6; }
+.markdown-body blockquote { border-left: 2px solid var(--accent); padding-left: 14px; color: var(--muted); font-style: italic; margin: 12px 0; }
