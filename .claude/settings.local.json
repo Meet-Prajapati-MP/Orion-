@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E \"\\\\.\\(xlsx|xls|csv\\)$\")",
+      "Bash(python generate_monthly_report.py)",
+      "Bash(pip install:*)"
+    ]
+  }
+}
